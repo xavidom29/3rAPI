@@ -17,6 +17,7 @@ var app = express();
 //Middleware
 app.use(cors());
 app.use(bodyParser.json())
+app.use(express.static('C:\\Proyectos\\projects\\3rtest\\myApp\\www'))
 
 //Me conecto a Mongo
 mongoClient.connect(secrets["atlasURL"], { useNewUrlParser: true }, function(err, mongoConnection) {
@@ -51,7 +52,7 @@ mongoClient.connect(secrets["atlasURL"], { useNewUrlParser: true }, function(err
 
 
   //Pongo el server a escuchar
-  console.log("Escuchando en puerto 3000!");
-  app.listen(3000);
+  console.log("Escuchando en puerto 80!");
+  app.listen(80);
 
 });
