@@ -17,7 +17,10 @@ var app = express();
 //Middleware
 app.use(cors());
 app.use(bodyParser.json())
-app.use(express.static('C:\\Proyectos\\projects\\3rtest\\myApp\\www'))
+
+app.use(express.static('/home/ubuntu/3r'))
+
+//app.use(express.static('C:\\Proyectos\\projects\\3rtest\\myApp\\www'))
 
 //Me conecto a Mongo
 mongoClient.connect(secrets["atlasURL"], { useNewUrlParser: true }, function(err, mongoConnection) {
