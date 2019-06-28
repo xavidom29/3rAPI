@@ -4,6 +4,7 @@ var mongo = require('mongodb');
 var cors = require('cors');
 var bodyParser = require('body-parser');
 var fs = require('fs')
+var https = require('https')
 
 var secretsRaw = fs.readFileSync("secrets.json")
 var secrets = JSON.parse(secretsRaw)
@@ -55,10 +56,14 @@ mongoClient.connect(secrets["atlasURL"], { useNewUrlParser: true }, function(err
 
 
   //Pongo el server a escuchar
-  console.log("Escuchando en puerto 443!");
   //console.log("Escuchando en puerto 3000!");
 
   //app.listen(3000);
-  app.listen(443);
-
+  https.createServer({
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+  }, app)
+  .listen(443, function () {
+    console.log('Example app listening on port 443!')
+  })
 });
